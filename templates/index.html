@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #e74c3c;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .disease {
+            background-color: #ffcccc;
+            color: #c0392b;
+        }
+        .no-disease {
+            background-color: #ccffcc;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>❤️ Heart Disease Prediction</h1>
+        <p style="text-align: center; color: #666;">Enter patient details below to predict heart disease risk</p>
+        
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" name="age" placeholder="e.g. 55" required>
+            </div>
+            <div class="form-group">
+                <label>Sex:</label>
+                <select name="sex" required>
+                    <option value="">Select</option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Chest Pain Type (cp): 0-3</label>
+                <input type="number" name="cp" min="0" max="3" placeholder="0-3" required>
+            </div>
+            <div class="form-group">
+                <label>Resting Blood Pressure (trestbps):</label>
+                <input type="number" name="trestbps" placeholder="e.g. 130" required>
+            </div>
+            <div class="form-group">
+                <label>Serum Cholesterol (chol) mg/dl:</label>
+                <input type="number" name="chol" placeholder="e.g. 250" required>
+            </div>
+            <div class="form-group">
+                <label>Fasting Blood Sugar > 120 mg/dl (fbs):</label>
+                <select name="fbs" required>
+                    <option value="">Select</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Resting ECG Results (restecg): 0-2</label>
+                <input type="number" name="restecg" min="0" max="2" placeholder="0-2" required>
+            </div>
+            <div class="form-group">
+                <label>Max Heart Rate Achieved (thalach):</label>
+                <input type="number" name="thalach" placeholder="e.g. 150" required>
+            </div>
+            <div class="form-group">
+                <label>Exercise Induced Angina (exang):</label>
+                <select name="exang" required>
+                    <option value="">Select</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>ST Depression (oldpeak):</label>
+                <input type="number" name="oldpeak" step="0.1" placeholder="e.g. 1.5" required>
+            </div>
+            <div class="form-group">
+                <label>Slope of Peak Exercise ST Segment: 0-2</label>
+                <input type="number" name="slope" min="0" max="2" placeholder="0-2" required>
+            </div>
+            <div class="form-group">
+                <label>Number of Major Vessels (ca): 0-4</label>
+                <input type="number" name="ca" min="0" max="4" placeholder="0-4" required>
+            </div>
+            <div class="form-group">
+                <label>Thalassemia (thal): 0-3</label>
+                <input type="number" name="thal" min="0" max="3" placeholder="0-3" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result {% if 'Detected' in prediction_text %}disease{% else %}no-disease{% endif %}">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

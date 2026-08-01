@@ -99,7 +99,7 @@ Go to `http://localhost:5000`
 ```
 
 ## Deployed Application
-- **Render URL:** _[Add your Render deployment URL here]_
+- **Render URL:** _[https://heart-disease-detection-m749.onrender.com/]_
 
 ## Conclusion
 The Random Forest Classifier achieved an accuracy of approximately 80.49% on the heart disease prediction task. The model was successfully deployed as a REST API using Flask and containerized with Docker for cloud deployment on Render. During the development process, challenges were faced in setting up the correct dependencies and ensuring the model file was properly loaded in the production environment. This project highlights the importance of MLOps practices in machine learning, as they bridge the gap between model development and deployment, ensuring that ML models are not only accurate but also accessible and maintainable in real-world applications.
